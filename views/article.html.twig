@@ -1,0 +1,20 @@
+{% extends "layout.html.twig" %} {% block title %}{{ article.title }}{% endblock %} {% block content %}
+
+<body>
+    <div class="container">
+        <section class="row">
+            <div class="col-md-6">
+                <div class="thumbnail">
+                    <img src="{{app.request.basepath}}/images/1.jpg">
+                </div>
+            </div>
+            <div class="col-md-6 jumbotron">
+                <h2>{{ article.title }}</h2>
+                <p>
+                    {{ article.content }}
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+{% endblock %}
