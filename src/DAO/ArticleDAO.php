@@ -1,8 +1,8 @@
 <?php
 
-namespace MicroCMS\DAO;
+namespace allformusic\DAO;
 
-use MicroCMS\Domain\Article;
+use allformusic\Domain\Article;
 
 class ArticleDAO extends DAO
 {
@@ -41,6 +41,18 @@ class ArticleDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+    public function findCat($cat) {
+        $sql = "select * from t_article where art_cat=?";
+        $result = $this->getDb()->fetchAll($sql, array($cat));
+
+        $articles = array();
+        foreach ($result as $row) {
+            $articleId = $row['art_id'];
+            $articles[$articleId] = $this->buildDomainObject($row);
+        }
+        return $articles;
+    }
+    
     /**
      * Creates an Article object based on a DB row.
      *
@@ -50,8 +62,11 @@ class ArticleDAO extends DAO
     protected function buildDomainObject($row) {
         $article = new Article();
         $article->setId($row['art_id']);
-        $article->setTitle($row['art_name']);
-        $article->setContent($row['art_desc']);
+        $article->setName($row['art_name']);
+        $article->setDesc($row['art_desc']);
+        $article->setPrice($row['art_price']);
+        $article->setDispo($row['art_dispo']);
+        $article->setCat($row['art_cat']);
         return $article;
     }
 }

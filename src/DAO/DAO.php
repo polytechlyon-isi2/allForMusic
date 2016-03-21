@@ -1,6 +1,6 @@
 <?php
 
-namespace MicroCMS\DAO;
+namespace allformusic\DAO;
 
 use Doctrine\DBAL\Connection;
 

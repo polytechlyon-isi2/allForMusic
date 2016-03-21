@@ -16,5 +16,9 @@ $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 // Register services
 $app['dao.article'] = $app->share(function ($app) {
-    return new MicroCMS\DAO\ArticleDAO($app['db']);
+    return new allformusic\DAO\ArticleDAO($app['db']);
+});
+
+$app['dao.category'] = $app->share(function ($app) {
+    return new allformusic\DAO\CategoryDAO($app['db']);
 });

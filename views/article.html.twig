@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %} {% block title %}{{ article.title }}{% endblock %} {% block content %}
+{% extends "layout.html.twig" %} {% block title %}{{ article.name }}{% endblock %} {% block content %}
 
 <body>
     <div class="container">
@@ -9,9 +9,9 @@
                 </div>
             </div>
             <div class="col-md-6 jumbotron">
-                <h2>{{ article.title }}</h2>
+                <h2>{{ article.name }}</h2>
                 <p>
-                    {{ article.content }}
+                    {{ article.desc }}
                 </p>
             </div>
         </section>

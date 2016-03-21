@@ -1,10 +1,10 @@
 drop table if exists t_article;
 
-create table t_article (
-    art_id integer not null primary key auto_increment,
-    art_name varchar(100) not null,
-    art_desc varchar(2000) not null,
-    art_price integer not null,
-    art_dispo varchar(100) not null,
-    art_cat varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) engine=innodb character set utf8 collate utf8_unicode_ci;
+CREATE TABLE `t_article` (
+  `art_id` int(11) NOT NULL,
+  `art_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `art_desc` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
+  `art_price` int(11) NOT NULL,
+  `art_dispo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `art_cat` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

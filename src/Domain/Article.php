@@ -1,29 +1,22 @@
 <?php
 
-namespace MicroCMS\Domain;
+namespace allformusic\Domain;
 
 class Article 
 {
-    /**
-     * Article id.
-     *
-     * @var integer
-     */
+
     private $id;
 
-    /**
-     * Article title.
-     *
-     * @var string
-     */
-    private $title;
+    private $name;
 
-    /**
-     * Article content.
-     *
-     * @var string
-     */
-    private $content;
+    private $desc;
+    
+    private $price;
+        
+    private $dispo;
+
+    private $cat;
+
 
     public function getId() {
         return $this->id;
@@ -33,19 +26,42 @@ class Article
         $this->id = $id;
     }
 
-    public function getTitle() {
-        return $this->title;
+    public function getName() {
+        return $this->name;
     }
 
-    public function setTitle($title) {
-        $this->title = $title;
+    public function setName($name) {
+        $this->name = $name;
     }
 
-    public function getContent() {
-        return $this->content;
+    public function getDesc() {
+        return $this->desc;
     }
 
-    public function setContent($content) {
-        $this->content = $content;
+    public function setDesc($desc) {
+        $this->desc = $desc;
+    }
+    
+    public function getPrice() {
+        return $this->price;
+    }
+
+    public function setPrice($price) {
+        $this->price = $price;
+    }
+        public function getDispo() {
+        return $this->dispo;
+    }
+
+    public function setDispo($dispo) {
+        $this->dispo = $dispo;
+    }
+    
+        public function getCat() {
+        return $this->cat;
+    }
+
+    public function setCat($cat) {
+        $this->cat = $cat;
     }
 }
