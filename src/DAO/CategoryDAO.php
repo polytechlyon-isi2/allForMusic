@@ -51,7 +51,6 @@ class CategoryDAO extends DAO
         $category = new Category();
         $category->setId($row['cat_id']);
         $category->setName($row['cat_name']);
-        $category->setImg($row['cat_img']);
         return $category;
     }
 }
