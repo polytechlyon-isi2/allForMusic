@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %} {% block title %}Panier{% endblock %} {% block content %} {% if app.session.get('shoppingCart') is empty %}
+<p>
+    <h2 class="text-center">Votre panier est vide.</h2>
+</p>
+
+{% else %}
+<h1 class="text-center"><span class="glyphicon glyphicon-shopping-cart" ></span> Votre panier<br /><br /></h1>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width:12%;"></th>
+                <th style="width:48%;">Article</th>
+                <th style="width:35%;">Prix</th>
+                <th style="width:5%;"><span class="glyphicon glyphicon-trash"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key,article in app.session.get('shoppingCart') %}
+            
+                <tr>
+                    <td><a class="thumbnail" style="width:100px;" href="{{ path('article', { 'id': article.id }) }}"><img src="{{app.request.basepath}}/images/{{article.id}}.jpg"></a></td>
+                    <td><br /><br /><a href="{{ path('article', { 'id': article.id }) }}">{{article.name}}</a></td>
+                    <td><br /><br />{{article.price}}€</td>
+                    <td><br /><br /><a href="{{ path('delete', { 'id': article.id }) }}"><span class="glyphicon glyphicon-trash"></a></td>
+                </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<h3 class="text-center">
+    Total de mes articles : {{ app.session.get('shoppingCartAmount') }} €<br /><br /><br />
+</h3>
+{% endif %} {% endblock %}

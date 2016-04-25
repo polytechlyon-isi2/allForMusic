@@ -6,7 +6,7 @@
 
             {% for category in categorys %}
             <div class="col-xs-4 col-sm-4 col-md-3">
-                <h1><a class="thumbnail" href="{{ path('category', { 'cat': category.name }) }}"><img src="{{app.request.basepath}}/images/{{category.id}}.jpg"></a></h1>
+                <h3 align="center"><a class="thumbnail" href="{{ path('category', { 'cat': category.name }) }}"><img src="{{app.request.basepath}}/images/{{category.id}}.jpg"></a>{{ category.name }}</h3>
             </div>
             {% endfor %}
 

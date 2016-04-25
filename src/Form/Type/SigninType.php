@@ -5,7 +5,7 @@ namespace allformusic\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class UserType extends AbstractType
+class SigninType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,7 +19,7 @@ class UserType extends AbstractType
                 'second_options'  => array('label' => 'Repeat password'),
             ))
             ->add('role', 'choice', array(
-                'choices' => array('ROLE_ADMIN' => 'Admin', 'ROLE_USER' => 'User')
+                'choices' => array('ROLE_USER' => 'User')
             ));
             
     }

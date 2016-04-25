@@ -1,18 +1,24 @@
-{% extends "layout.html.twig" %} {% block title %}{{ article.name }}{% endblock %} {% block content %}
+{% extends "layout.html.twig" %}{% block title %}{{ article.name }}{% endblock %} {% block content %}
 
 <body>
     <div class="container">
         <section class="row">
             <div class="col-md-6">
                 <div class="thumbnail">
-                    <img src="{{app.request.basepath}}/images/1.jpg">
+                    <img src="{{app.request.basepath}}/images/{{article.id}}.jpg">
                 </div>
             </div>
             <div class="col-md-6 jumbotron">
-                <h2>{{ article.name }}</h2>
-                <p>
-                    {{ article.desc }}
-                </p>
+                <h2>{{ article.name }}</h2> {% if article.dispo == "En stock" %}
+                <p style="color: Green;">En stock</p>
+                {% else %}
+                <p style="color: Red;">Pas disponible</p>
+                {% endif %}
+                <p>{{ article.desc }}</p>
+                <h3 style="color: Navy;"> <b>{{ article.price }} €</b></h3> {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                <h3 class="text-right"><a id="shopping-cart" href="{{ path('add', { 'id': article.id }) }}">
+                    <span class="glyphicon glyphicon-shopping-cart">Ajouter au panier</span></h3></a>
+                {% endif %}
             </div>
         </section>
     </div>

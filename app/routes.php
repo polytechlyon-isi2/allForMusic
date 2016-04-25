@@ -5,48 +5,34 @@ use allformusic\Domain\User;
 
 
 // Home page
-$app->get('/', function () use ($app) {
-    $categorys = $app['dao.category']->findAll();
-    return $app['twig']->render('index.html.twig', array('categorys' => $categorys));
-})->bind('home');
+$app->get('/', "allformusic\Controller\HomeController::homeAction")->bind('home');
 
 // Article details with comments
-$app->get('/article/{id}', function ($id) use ($app) {
-    $article = $app['dao.article']->find($id);
-    return $app['twig']->render('article.html.twig', array('article' => $article));
-})->bind('article');;
+$app->match('/article/{id}', "allformusic\Controller\HomeController::articleAction")->bind('article');;
 
-$app->get('/category/{cat}', function ($cat) use ($app) {
-    $articles = $app['dao.article']->findCat($cat);
-    return $app['twig']->render('category.html.twig', array('articles' => $articles));
-})->bind('category');;
+$app->get('/category/{cat}', "allformusic\Controller\HomeController::categoryAction")->bind('category');;
 
 // Login form
-$app->get('/login', function(Request $request) use ($app) {
-    return $app['twig']->render('login.html.twig', array(
-        'error'         => $app['security.last_error']($request),
-        'last_username' => $app['session']->get('_security.last_username'),
-    ));
-})->bind('login');
+$app->get('/login', "allformusic\Controller\HomeController::loginAction")->bind('login');
 
-$app->match('/signin', function(Request $request) use ($app) {
-    $user = new User();
-    $userForm = $app['form.factory']->create(new UserType(), $user);
-    $userForm->handleRequest($request);
-    if ($userForm->isSubmitted() && $userForm->isValid()) {
-        // generate a random salt value
-        $salt = substr(md5(time()), 0, 23);
-        $user->setSalt($salt);
-        $plainPassword = $user->getPassword();
-        // find the default encoder
-        $encoder = $app['security.encoder.digest'];
-        // compute the encoded password
-        $password = $encoder->encodePassword($plainPassword, $user->getSalt());
-        $user->setPassword($password); 
-        $app['dao.user']->save($user);
-        $app['session']->getFlashBag()->add('success', 'The user was successfully created.');
-    }
-    return $app['twig']->render('signin.html.twig', array(
-        'title' => 'New user',
-        'userForm' => $userForm->createView()));
-})->bind('signin');
+$app->match('/signin', "allformusic\Controller\HomeController::signinAction")->bind('signin');
+
+$app->get('/cart', "allformusic\Controller\HomeController::cartAction")->bind('cart');
+
+$app->match('/article/add/{id}', "allformusic\Controller\HomeController::addCartAction")->bind('add');
+
+$app->match('/article/delete/{id}', "allformusic\Controller\HomeController::deleteCartAction")->bind('delete');
+
+$app->get('/admin/article/{id}/delete', "allformusic\Controller\AdminController::deleteArticleAction")->bind('admin_article_delete');
+    
+$app->get('/admin', "allformusic\Controller\AdminController::indexAction")->bind('admin');
+    
+$app->match('/admin/article/{id}/edit', "allformusic\Controller\AdminController::editArticleAction")->bind('admin_article_edit');
+
+$app->match('/admin/article/add', "allformusic\Controller\AdminController::addArticleAction")->bind('admin_article_add');
+
+$app->match('/admin/user/add', "allformusic\Controller\AdminController::addUserAction")->bind('admin_user_add');
+
+$app->get('/admin/user/{id}/delete', "allformusic\Controller\AdminController::deleteUserAction")->bind('admin_user_delete');
+
+$app->match('/admin/user/{id}/edit', "allformusic\Controller\AdminController::editUserAction")->bind('admin_user_edit');
