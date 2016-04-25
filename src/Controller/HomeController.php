@@ -5,8 +5,8 @@ namespace allformusic\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use allformusic\Domain\User;
-use allformusic\Form\type\UserType;
-use allformusic\Form\type\SigninType;
+use allformusic\Form\Type\UserType;
+use allformusic\Form\Type\SigninType;
 
 class HomeController {
 
