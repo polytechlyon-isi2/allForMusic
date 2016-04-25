@@ -8,7 +8,7 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <ul class="nav nav-tabs nav-justified">
             <li class="active"><a href="#articles" data-toggle="tab">Articles</a></li>
-            <li><a href="#users" data-toggle="tab">Users</a></li>
+            <li><a href="#users" data-toggle="tab">Utilisateurs</a></li>
         </ul>
     </div>
 </div>
@@ -20,10 +20,10 @@
                 <thead>
                     <tr>
                         <th style="width:12%;"></th>
-                        <th style="width:38%;">Article</th>
+                        <th style="width:38%;">Articles</th>
                         <th style="width:25%;">Prix</th>
-                        <th style="width:20%;">Catégorie</th>
-                        <th style="width:5%;">Action</th>
+                        <th style="width:20%;">Catégories</th>
+                        <th style="width:5%;">Actions</th>
                     </tr>
                 </thead>
                 {% for article in articles %}
@@ -72,7 +72,7 @@
         <div class="alert alert-warning">Aucun article trouvé.</div>
         {% endif %}
         <a href="{{ path('admin_article_add') }}">
-            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add article</button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un article</button>
         </a>
     </div>
     <div class="tab-pane fade adminTable" id="users">
@@ -81,9 +81,9 @@
             <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th style="width:40%;">Name</th>
-                        <th style="width:50%;">Role</th>
-                        <th style="width:10%;">Action</th>
+                        <th style="width:40%;">Noms</th>
+                        <th style="width:50%;">Rôles</th>
+                        <th style="width:10%;">Actions</th>
                     </tr>
                 </thead>
                 {% for user in users %}
@@ -102,10 +102,10 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">Confirmation needed</h4>
+                                        <h4 class="modal-title" id="myModalLabel">Confirmation demandée</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Do you really want to delete this user ?
+                                        Etes-vous sûr de vouloir le supprimer ?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -120,11 +120,12 @@
             </table>
         </div>
         {% else %}
-        <div class="alert alert-warning">No users found.</div>
+        <div class="alert alert-warning">Aucun utilisateur.</div>
         {% endif %}
         <a href="{{ path('admin_user_add') }}">
-            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add user</button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un utilisateur</button>
         </a>
+
     </div>
 </div>
-{% endblock %}
+<br/> {% endblock %}
