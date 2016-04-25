@@ -7,12 +7,10 @@ use allformusic\Domain\User;
 // Home page
 $app->get('/', "allformusic\Controller\HomeController::homeAction")->bind('home');
 
-// Article details with comments
 $app->match('/article/{id}', "allformusic\Controller\HomeController::articleAction")->bind('article');;
 
 $app->get('/category/{cat}', "allformusic\Controller\HomeController::categoryAction")->bind('category');;
 
-// Login form
 $app->get('/login', "allformusic\Controller\HomeController::loginAction")->bind('login');
 
 $app->match('/signin', "allformusic\Controller\HomeController::signinAction")->bind('signin');

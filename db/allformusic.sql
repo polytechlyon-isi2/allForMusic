@@ -1,3 +1,44 @@
+-- phpMyAdmin SQL Dump
+-- version 4.2.12deb2+deb8u1
+-- http://www.phpmyadmin.net
+--
+-- Client :  localhost
+-- Généré le :  Lun 25 Avril 2016 à 21:52
+-- Version du serveur :  5.5.44-0+deb8u1
+-- Version de PHP :  5.6.17-0+deb8u1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données :  `allformusic`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_article`
+--
+
+CREATE TABLE IF NOT EXISTS `t_article` (
+`art_id` int(11) NOT NULL,
+  `art_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `art_desc` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
+  `art_price` int(11) NOT NULL,
+  `art_dispo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `art_cat` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `t_article`
+--
+
 INSERT INTO `t_article` (`art_id`, `art_name`, `art_desc`, `art_price`, `art_dispo`, `art_cat`) VALUES
 (11, 'Eagleton SUN STATE BASS J SUNBURST', 'La gamme Sun State d''Eagletone propose guitares et basses de qualité, robustes, versatiles et surtout qui tiendront dans le temps.\r\nLa basse Sun State Bass J est équipée d''une configuration électronique éprouvée : deux micros simples passifs branchés en parallèle produisant un son très brillant mais aussi capable de créer des sonorités chères au Jazzmen.\r\nAssocié à un corps en tilleul, un bois aux sonorités chaudes et en même temps très claquantes, elle permet d''envisager tous les styles : Jazz, Blues, Funk, Rock, Heavy Metal...', 129, 'En stock', 'Bass'),
 (12, 'Ibanez SR1800 NTF NATURAL FLAT', '2x micros Nordstrand Big Single (manche et Chevalet) - égalisation EQB-IIISC 3-bandes - accastillage doré - corps en acajou avec poutre centrale en noyer et table en palissandre et érable flammée - manche SR Atlas Premium en wenge et bubinga - touche en wenge 24 cases medium - Chevalet Mono-Rail IV', 1329, 'Pas disponible', 'Bass'),
@@ -20,6 +61,20 @@ INSERT INTO `t_article` (`art_id`, `art_name`, `art_desc`, `art_price`, `art_dis
 (81, 'Yoman Djembé\r\nPETIT MODELE PROFESSIONNEL', 'Fabriqué artisanalement au Ghana dans la plus pure tradition, ce djembé est une merveille de légèreté. L''idéal pour les enfants débutants.\r\n\r\nLe bois employé pour ce djembé est appelé "Tunebois". Celui-ci délivre un son chaud et puissant tout en étant très léger pour un transport plus facile. \r\n\r\nUne gorge spécialement sculptée dans le bois entre le pied et le corps garantit un maintien rectiligne du fer de montage inférieur, \r\nassurant ainsi une parfaite tension de la peau sur une plus longue durée. \r\nLa peau de chèvre, quant à elle, est montée de manière traditionnelle avec un cordage professionnel appelé "drisse pré étirée".\r\n\r\nCe modèle ravira tous les musiciens qui recherchent à la fois un instrument professionnel, léger à un prix très étudié et ce, sans compromis.', 59, 'En stock', 'Tambour'),
 (82, 'Toca Djembé\r\nFREESTYLE COLORSOUND 7" (~17,7CM) X 12" (~30,5 CM) - METALLIC INDIGO', '- Fût en fibre synthétique\r\n- Ultra léger\r\n- Peau imperméable ultra-résistante\r\n- Caoutchouc de protection anti-dérapant\r\n- taille 7"', 40, 'En stock', 'Tambour');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_category`
+--
+
+CREATE TABLE IF NOT EXISTS `t_category` (
+`cat_id` int(100) NOT NULL,
+  `cat_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `t_category`
+--
 
 INSERT INTO `t_category` (`cat_id`, `cat_name`) VALUES
 (1, 'Bass'),
@@ -31,8 +86,70 @@ INSERT INTO `t_category` (`cat_id`, `cat_name`) VALUES
 (7, 'Trompette'),
 (8, 'Tambour');
 
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `t_user`
+--
+
+CREATE TABLE IF NOT EXISTS `t_user` (
+`usr_id` int(11) NOT NULL,
+  `usr_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `usr_password` varchar(88) COLLATE utf8_unicode_ci NOT NULL,
+  `usr_salt` varchar(23) COLLATE utf8_unicode_ci NOT NULL,
+  `usr_role` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `t_user`
+--
 
 INSERT INTO `t_user` (`usr_id`, `usr_name`, `usr_password`, `usr_salt`, `usr_role`) VALUES
 (1, 'JohnDoe', 'L2nNR5hIcinaJkKR+j4baYaZjcHS0c3WX2gjYF6Tmgl1Bs+C9Qbr+69X8eQwXDvw0vp73PrcSeT0bGEW5+T2hA==', 'YcM=A$nsYzkyeDVjEUa7W9K', 'ROLE_USER'),
-(2, 'JaneDoe', 'EfakNLxyhHy2hVJlxDmVNl1pmgjUZl99gtQ+V3mxSeD8IjeZJ8abnFIpw9QNahwAlEaXBiQUBLXKWRzOmSr8HQ==', 'dhMTBkzwDKxnD;4KNs,4ENy', 'ROLE_USER');
+(2, 'Flo', 'z7Nu+loGMf0rXbxLTrek4cQKRlLh+r85vb33q9ry4EoO23WjG2gMxfa7ST/8v1Gr1CJBEg7gdsOy4jRt3UzCVQ==', '3a05182581cc6337e097532', 'ROLE_ADMIN'),
+(3, 'JohnDoe', 'M8NKJst3m4entWrQn6aCKmRammm+56XVQAjLtZy4FfepSDG/iTrVi7KRHZUbfXyz6HcJEOs6U8medE4IA8lANA==', 'c6d65858e16137ff61e381f', 'ROLE_USER');
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `t_article`
+--
+ALTER TABLE `t_article`
+ ADD PRIMARY KEY (`art_id`);
+
+--
+-- Index pour la table `t_category`
+--
+ALTER TABLE `t_category`
+ ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Index pour la table `t_user`
+--
+ALTER TABLE `t_user`
+ ADD PRIMARY KEY (`usr_id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `t_article`
+--
+ALTER TABLE `t_article`
+MODIFY `art_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=83;
+--
+-- AUTO_INCREMENT pour la table `t_category`
+--
+ALTER TABLE `t_category`
+MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `t_user`
+--
+ALTER TABLE `t_user`
+MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

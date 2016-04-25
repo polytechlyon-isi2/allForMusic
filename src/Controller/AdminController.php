@@ -13,8 +13,6 @@ class AdminController {
 
     /**
      * Admin home page controller.
-     *
-     * @param Application $app Silex application
      */
     public function indexAction(Application $app) {
         $articles = $app['dao.article']->findAll();
@@ -26,9 +24,6 @@ class AdminController {
 
     /**
      * Add article controller.
-     *
-     * @param Request $request Incoming request
-     * @param Application $app Silex application
      */
     public function addArticleAction(Request $request, Application $app) {
         $article = new Article();
@@ -45,10 +40,6 @@ class AdminController {
 
     /**
      * Edit article controller.
-     *
-     * @param integer $id Article id
-     * @param Request $request Incoming request
-     * @param Application $app Silex application
      */
     public function editArticleAction($id, Request $request, Application $app) {
         $article = $app['dao.article']->find($id);
@@ -65,9 +56,6 @@ class AdminController {
 
     /**
      * Delete article controller.
-     *
-     * @param integer $id Article id
-     * @param Application $app Silex application
      */
     public function deleteArticleAction($id, Application $app) {
         // Delete the article
@@ -81,9 +69,6 @@ class AdminController {
 
     /**
      * Add user controller.
-     *
-     * @param Request $request Incoming request
-     * @param Application $app Silex application
      */
     public function addUserAction(Request $request, Application $app) {
         $user = new User();
@@ -109,10 +94,7 @@ class AdminController {
 
     /**
      * Edit user controller.
-     *
-     * @param integer $id User id
-     * @param Request $request Incoming request
-     * @param Application $app Silex application
+     
      */
     public function editUserAction($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
@@ -135,9 +117,6 @@ class AdminController {
 
     /**
      * Delete user controller.
-     *
-     * @param integer $id User id
-     * @param Application $app Silex application
      */
     public function deleteUserAction($id, Application $app) {
         // Delete the user

@@ -81,9 +81,6 @@ class ArticleDAO extends DAO
     
     /**
      * Creates an Article object based on a DB row.
-     *
-     * @param array $row The DB row containing Article data.
-     * @return \MicroCMS\Domain\Article
      */
     protected function buildDomainObject($row) {
         $article = new Article();

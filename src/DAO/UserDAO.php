@@ -10,13 +10,7 @@ use allformusic\Domain\User;
 
 class UserDAO extends DAO implements UserProviderInterface
 {
-    /**
-     * Returns a user matching the supplied id.
-     *
-     * @param integer $id The user id.
-     *
-     * @return \allformusic\Domain\User|throws an exception if no matching user is found
-     */
+
     public function find($id) {
         $sql = "select * from t_user where usr_id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
@@ -27,7 +21,6 @@ class UserDAO extends DAO implements UserProviderInterface
             throw new \Exception("No user matching id " . $id);
     }
 
-    
     
     public function save(User $user) {
         $userData = array(
@@ -49,10 +42,6 @@ class UserDAO extends DAO implements UserProviderInterface
     }
     
     
-    
-    /**
-     * {@inheritDoc}
-     */
     public function loadUserByUsername($username)
     {
         $sql = "select * from t_user where usr_name=?";
@@ -64,9 +53,7 @@ class UserDAO extends DAO implements UserProviderInterface
             throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+  
     public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);
@@ -75,6 +62,7 @@ class UserDAO extends DAO implements UserProviderInterface
         }
         return $this->loadUserByUsername($user->getUsername());
     }
+    
     
     public function findAll() {
         $sql = "select * from t_user order by usr_role, usr_name";
@@ -89,34 +77,20 @@ class UserDAO extends DAO implements UserProviderInterface
         return $entities;
     }
     
-    
 
-    /**
-     * Removes a user from the database.
-     *
-     * @param @param integer $id The user id.
-     */
     public function delete($id) {
         // Delete the user
         $this->getDb()->delete('t_user', array('usr_id' => $id));
     }
     
     
-
-    /**
-     * {@inheritDoc}
-     */
     public function supportsClass($class)
     {
         return 'allformusic\Domain\User' === $class;
     }
 
-    /**
-     * Creates a User object based on a DB row.
-     *
-     * @param array $row The DB row containing User data.
-     * @return \MicroCMS\Domain\User
-     */
+    
+    
     protected function buildDomainObject($row) {
         $user = new User();
         $user->setId($row['usr_id']);
